@@ -5,6 +5,7 @@ import com.anmory.onlinechat.model.UserMapper;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +33,7 @@ public class UserController {
         // 2.如果匹配，那么就要开启会话
         HttpSession session = request.getSession(true);// session在请求里面，所以要从请求里面获取
         session.setAttribute("user",user);// 保存session对象，以便后续使用
-        System.out.println("注册成功" + user);
+        System.out.println("登录成功" + user);
         return user;
     }
 
@@ -51,9 +52,26 @@ public class UserController {
         user.setPassword(password);
         int ret = userMapper.InsertUser(user);
         if(ret == 1) {
-            System.out.println("注册成功");
+            System.out.println("注册成功" + user);
             return user;
         }
         return new User();
+    }
+
+    @GetMapping("/userinfo")
+    @ResponseBody
+    public Object getUserInfo(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);// 不是创建请求，所以传false
+        if(session == null) {
+            System.out.println("获取不到当前session会话");
+            return new User();
+        }
+        User user = (User)session.getAttribute("user");
+        if(user == null) {
+            System.out.println("获取不到当前user用户");
+            return new User();
+        }
+        System.out.println("获取user用户成功" + user.getUsername());
+        return user;
     }
 }

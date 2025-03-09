@@ -7,29 +7,28 @@ package com.anmory.onlinechat.model;
  */
 
 public class User {
-    private Long userid;
+    private int userId;
     private String username;
     private String password;
     private String email;
     private String phone;
 
-    public Long getUserid() {
-        return userid;
+    public int getUserid() {
+        return userId;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "userid=" + userid +
+                "userid=" + userId +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';
     }
 
-    public void setUserid(Long userid) {
-        this.userid = userid;
+    public void setUserid(int userid) {
+        this.userId = userid;
     }
 
     public String getUsername() {

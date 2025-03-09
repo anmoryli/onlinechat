@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anmory.onlinechat.model.FriendMapper">
+    <select id="selectFriends" resultType="com.anmory.onlinechat.model.Friend">
+        select userid as friendid, username as friendname from user
+        where userid in
+        (select friendid from friend where userid = #{userId})
+    </select>
+</mapper>
