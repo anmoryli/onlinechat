@@ -8,35 +8,33 @@ package com.anmory.onlinechat.model;
 
 public class User {
     private int userId;
-    private String username;
+    private String userName;
     private String password;
     private String email;
     private String phone;
 
-    public int getUserid() {
-        return userId;
-    }
-
     @Override
     public String toString() {
         return "User{" +
-                "userid=" + userId +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
                 '}';
     }
 
-    public void setUserid(int userid) {
-        this.userId = userid;
+    public int getUserId() {
+        return userId;
     }
 
-    public String getUsername() {
-        return username;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {

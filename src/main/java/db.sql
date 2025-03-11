@@ -11,3 +11,20 @@ create table if not exists user(
 );
 
 insert into user values(null,'anmory','lmjnb666','anmory@qq.com','19395205012');
+
+drop table if exists message_session;
+create table message_session(
+    sessionid int primary key auto_increment,
+    lasttime datetime
+);
+
+drop table if exists message_session_user;
+create table message_session_user(
+    sessionid int,
+    userid int
+);
+
+select sessionid from message_session
+where sessionid in
+      (select sessionid from message_session_user where userid = 6
+       order by lasttime desc);

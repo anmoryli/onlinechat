@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anmory.onlinechat.model.MessageSessionMapper">
+    <select id="getSessionIdsByUserId" resultType="java.lang.Integer">
+        select sessionid from message_session
+        where sessionid in
+        (select sessionid from message_session_user where userid = #{userId})
+        order by lasttime desc
+    </select>
+
+    <select id="getFriendsBySessionid" resultType="com.anmory.onlinechat.model.Friend">
+        select userid as friendId,username as friendName from user
+        where userid in
+        (select userid from message_session_user where sessionid = #{sessionId} and userid != #{selfId})
+
+    </select>
+</mapper>

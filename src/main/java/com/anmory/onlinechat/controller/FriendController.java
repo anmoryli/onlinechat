@@ -25,7 +25,7 @@ import java.util.List;
 public class FriendController {
     @Resource
     private FriendMapper friendMapper;
-    @GetMapping("friendlist")
+    @GetMapping("/friendlist")
     @ResponseBody
     public Object getFriendList(HttpServletRequest request) throws JsonProcessingException {
         // 1.从会话中获取userid
@@ -41,7 +41,7 @@ public class FriendController {
         }
         // 2.根据userid查询数据库
         ObjectMapper om = new ObjectMapper();// 把对象转换成json格式返回
-        List<Friend> friends = friendMapper.selectFriends(user.getUserid());
+        List<Friend> friends = friendMapper.selectFriends(user.getUserId());
         return om.writeValueAsString(friends);
     }
 }

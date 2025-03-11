@@ -48,7 +48,7 @@ public class UserController {
         }
         // 2.用户名不重复，注册用户
         User user = new User();
-        user.setUsername(username);
+        user.setUserName(username);
         user.setPassword(password);
         int ret = userMapper.InsertUser(user);
         if(ret == 1) {
@@ -58,7 +58,7 @@ public class UserController {
         return new User();
     }
 
-    @GetMapping("/userinfo")
+    @GetMapping("/userInfo")
     @ResponseBody
     public Object getUserInfo(HttpServletRequest request) {
         HttpSession session = request.getSession(false);// 不是创建请求，所以传false
@@ -71,7 +71,7 @@ public class UserController {
             System.out.println("获取不到当前user用户");
             return new User();
         }
-        System.out.println("获取user用户成功" + user.getUsername());
+        System.out.println("获取user用户成功" + user);
         return user;
     }
 }
